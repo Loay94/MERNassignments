@@ -1,7 +1,7 @@
 class Ninja{
-    constructor(name,health){
+    constructor(name){
         this.name = name;
-        this.health=health;
+        this.health=100;
         this.speed = 3;
         this.strength=3;
     }
@@ -17,8 +17,9 @@ class Ninja{
 
 }
 
- const ninja= new Ninja('diaa',100);
+ const ninja= new Ninja('diaa');
  ninja.sayName();
  ninja.showState();
 ninja.drinkSake();
  console.log(ninja.health);
+
