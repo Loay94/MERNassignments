@@ -1,0 +1,11 @@
+form{
+    border: 1px solid;
+    width: 400px;
+    padding: 3px;
+    margin: 20px;
+    display: inline-table;
+}
+div{
+padding: 3px;
+margin: 8px 2px;
+}
