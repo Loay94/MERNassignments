@@ -12,7 +12,7 @@ function App() {
             <Parameter path="/:parameter"/>
             <Colors path="/:para/:background/:color"/>
         </Router>
-    </div>   
+    </div>
   );
 }
 
