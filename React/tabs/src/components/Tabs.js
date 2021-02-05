@@ -10,8 +10,6 @@ const Tabs = () => {
     const onClickThree = (e) =>{
         setParagraph(" Tab 3 content is showing here.")
     }
-
-
     return (
         <div>
             <button onClick={onClickOne}>Tab One </button>

@@ -15,9 +15,8 @@ const ListComponent = () => {
             {
             
             people.length>0 && people.map((person,index)=>
-            {
-                return(<li key={index}>{person.name}</li>)}
             
+            (<li key={index}>{person.name}</li>)
             )
             
             }
