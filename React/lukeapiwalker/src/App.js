@@ -1,18 +1,18 @@
 import './App.css';
+import Search from './components/Search';
+import {Router} from '@reach/router';
+import People from "./components/People";
+import Planets from "./components/Planets";
+
 
 function App() {
   return (
     <div className="App">
-      <form>
-      <label >Search for : </label>
-        <select id="types">
-        <option value="planet">Planets</option>
-        <option value="pepole">Pepole</option>
-      </select>
-      <label> ID : </label>
-      <input type="number" />
-      <button >Search</button>
-      </form>
+      <Search />
+      <Router>
+        <People path="/people/:id"/>
+        <Planets path="/planets/:id"/>
+      </Router>
     </div>
   );
 }

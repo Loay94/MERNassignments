@@ -1,0 +1,655 @@
+Microsoft Windows [Version 10.0.19041.746]
+(c) 2020 Microsoft Corporation. All rights reserved.
+
+C:\Users\jodhl>mongo.exe
+'mongo.exe' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\jodhl>cd c:/"Program Files"/MongoDB/Server/4.4/bin/
+
+c:\Program Files\MongoDB\Server\4.4\bin>mongo.exe
+MongoDB shell version v4.4.3
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("0b6fc035-8f04-4caf-8b9f-8fa4e9e277cb") }
+MongoDB server version: 4.4.3
+---
+The server generated these startup warnings when booting:
+        2021-02-06T20:34:36.622+02:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> dbs show
+uncaught exception: SyntaxError: unexpected token: identifier :
+@(shell):1:4
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+test    0.000GB
+> db
+test
+> db.createCollection("my_first_db")
+{ "ok" : 1 }
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+test    0.000GB
+> show collection
+uncaught exception: Error: don't know how to show [collection] :
+shellHelper.show@src/mongo/shell/utils.js:1191:11
+shellHelper@src/mongo/shell/utils.js:819:15
+@(shellhelp2):1:1
+> show collections
+my_first_db
+users
+> db.create("my_first_db")
+uncaught exception: TypeError: db.create is not a function :
+@(shell):1:1
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+test    0.000GB
+> use my_first_db
+switched to db my_first_db
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+test    0.000GB
+> db
+my_first_db
+> db.createCollection("students")
+{ "ok" : 1 }
+> show collections
+students
+> db.students.insert({name:"loay",home_state:"nablus",lucky_number:7,birthday:{month:8,day:15,year:1997}}
+... )
+WriteResult({ "nInserted" : 1 })
+> db.student.show()
+uncaught exception: TypeError: db.student.show is not a function :
+@(shell):1:1
+> db.student.find()
+> db.student.find({})
+> db.students.insert({name:"loay",home_state:"nablus",lucky_number:7,birthday:{month:8,day:15,year:1997}} )
+WriteResult({ "nInserted" : 1 })
+> db.student.find()
+> db.student.find({name:"loay"})
+> db.students.find()
+{ "_id" : ObjectId("60210d6c1afe400203b198d6"), "name" : "loay", "home_state" : "nablus", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 15, "year" : 1997 } }
+{ "_id" : ObjectId("602114ea1afe400203b198d7"), "name" : "loay", "home_state" : "nablus", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 15, "year" : 1997 } }
+> db.students.insert({name:"tareq",home_state:"ramallah",lucky_number:15,birthday:{month:8,day:15,year:1999}} )
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({name:"abed",home_state:"jenin",lucky_number:30,birthday:{month:9,day:1,year:1990}} )
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({name:"lion",home_state:"nablus",lucky_number:23,birthday:{month:9,day:6,year:1998}} )
+WriteResult({ "nInserted" : 1 })
+> db.students.find()
+{ "_id" : ObjectId("60210d6c1afe400203b198d6"), "name" : "loay", "home_state" : "nablus", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 15, "year" : 1997 } }
+{ "_id" : ObjectId("602114ea1afe400203b198d7"), "name" : "loay", "home_state" : "nablus", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 15, "year" : 1997 } }
+{ "_id" : ObjectId("602115631afe400203b198d8"), "name" : "tareq", "home_state" : "ramallah", "lucky_number" : 15, "birthday" : { "month" : 8, "day" : 15, "year" : 1999 } }
+{ "_id" : ObjectId("602115901afe400203b198d9"), "name" : "abed", "home_state" : "jenin", "lucky_number" : 30, "birthday" : { "month" : 9, "day" : 1, "year" : 1990 } }
+{ "_id" : ObjectId("602115b21afe400203b198da"), "name" : "lion", "home_state" : "nablus", "lucky_number" : 23, "birthday" : { "month" : 9, "day" : 6, "year" : 1998 } }
+> db.students.find().pretty()
+{
+        "_id" : ObjectId("60210d6c1afe400203b198d6"),
+        "name" : "loay",
+        "home_state" : "nablus",
+        "lucky_number" : 7,
+        "birthday" : {
+                "month" : 8,
+                "day" : 15,
+                "year" : 1997
+        }
+}
+{
+        "_id" : ObjectId("602114ea1afe400203b198d7"),
+        "name" : "loay",
+        "home_state" : "nablus",
+        "lucky_number" : 7,
+        "birthday" : {
+                "month" : 8,
+                "day" : 15,
+                "year" : 1997
+        }
+}
+{
+        "_id" : ObjectId("602115631afe400203b198d8"),
+        "name" : "tareq",
+        "home_state" : "ramallah",
+        "lucky_number" : 15,
+        "birthday" : {
+                "month" : 8,
+                "day" : 15,
+                "year" : 1999
+        }
+}
+{
+        "_id" : ObjectId("602115901afe400203b198d9"),
+        "name" : "abed",
+        "home_state" : "jenin",
+        "lucky_number" : 30,
+        "birthday" : {
+                "month" : 9,
+                "day" : 1,
+                "year" : 1990
+        }
+}
+{
+        "_id" : ObjectId("602115b21afe400203b198da"),
+        "name" : "lion",
+        "home_state" : "nablus",
+        "lucky_number" : 23,
+        "birthday" : {
+                "month" : 9,
+                "day" : 6,
+                "year" : 1998
+        }
+}
+> db.students.insert({name:"maher",home_state:"ramallah",lucky_number:20,birthday:{month:1,day:1,year:2000}} )
+WriteResult({ "nInserted" : 1 })
+> db.students.find().pretty()
+{
+        "_id" : ObjectId("60210d6c1afe400203b198d6"),
+        "name" : "loay",
+        "home_state" : "nablus",
+        "lucky_number" : 7,
+        "birthday" : {
+                "month" : 8,
+                "day" : 15,
+                "year" : 1997
+        }
+}
+{
+        "_id" : ObjectId("602114ea1afe400203b198d7"),
+        "name" : "loay",
+        "home_state" : "nablus",
+        "lucky_number" : 7,
+        "birthday" : {
+                "month" : 8,
+                "day" : 15,
+                "year" : 1997
+        }
+}
+{
+        "_id" : ObjectId("602115631afe400203b198d8"),
+        "name" : "tareq",
+        "home_state" : "ramallah",
+        "lucky_number" : 15,
+        "birthday" : {
+                "month" : 8,
+                "day" : 15,
+                "year" : 1999
+        }
+}
+{
+        "_id" : ObjectId("602115901afe400203b198d9"),
+        "name" : "abed",
+        "home_state" : "jenin",
+        "lucky_number" : 30,
+        "birthday" : {
+                "month" : 9,
+                "day" : 1,
+                "year" : 1990
+        }
+}
+{
+        "_id" : ObjectId("602115b21afe400203b198da"),
+        "name" : "lion",
+        "home_state" : "nablus",
+        "lucky_number" : 23,
+        "birthday" : {
+                "month" : 9,
+                "day" : 6,
+                "year" : 1998
+        }
+}
+{
+        "_id" : ObjectId("602115f51afe400203b198db"),
+        "name" : "maher",
+        "home_state" : "ramallah",
+        "lucky_number" : 20,
+        "birthday" : {
+                "month" : 1,
+                "day" : 1,
+                "year" : 2000
+        }
+}
+> db.students.find({name:loay,home_State:"nablus"}).pretty()
+uncaught exception: ReferenceError: loay is not defined :
+@(shell):1:19
+> db.students.find({name:"loay", home_State:"nablus"}).pretty()
+> db.students.find({name:"loay", home_State:"nablus"}).pretty()
+> db.students.find({name:"loay", home_State:"nablus"})
+> db.students.find({name:"loay"})
+{ "_id" : ObjectId("60210d6c1afe400203b198d6"), "name" : "loay", "home_state" : "nablus", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 15, "year" : 1997 } }
+{ "_id" : ObjectId("602114ea1afe400203b198d7"), "name" : "loay", "home_state" : "nablus", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 15, "year" : 1997 } }
+> db.students.find({name:"loay"}{home_state:"ramallah})
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:30
+> db.students.find({name:"loay"}{home_state:"nablus"})
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:30
+> db.students.find({name:"loay"}).find({home_state:"nablus"})
+uncaught exception: TypeError: db.students.find(...).find is not a function :
+@(shell):1:1
+> db.students.find({name:"loay" , home_state:"nablus"})
+{ "_id" : ObjectId("60210d6c1afe400203b198d6"), "name" : "loay", "home_state" : "nablus", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 15, "year" : 1997 } }
+{ "_id" : ObjectId("602114ea1afe400203b198d7"), "name" : "loay", "home_state" : "nablus", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 15, "year" : 1997 } }
+> db.students.find({name:"lion" , home_state:"nablus"})
+{ "_id" : ObjectId("602115b21afe400203b198da"), "name" : "lion", "home_state" : "nablus", "lucky_number" : 23, "birthday" : { "month" : 9, "day" : 6, "year" : 1998 } }
+> db.students.find({home_state:"nablus" , home_state:"ramallah"})
+{ "_id" : ObjectId("602115631afe400203b198d8"), "name" : "tareq", "home_state" : "ramallah", "lucky_number" : 15, "birthday" : { "month" : 8, "day" : 15, "year" : 1999 } }
+{ "_id" : ObjectId("602115f51afe400203b198db"), "name" : "maher", "home_state" : "ramallah", "lucky_number" : 20, "birthday" : { "month" : 1, "day" : 1, "year" : 2000 } }
+> db.students.find({home_state:"nablus" , home_state:"ramallah"}).pretty()
+{
+        "_id" : ObjectId("602115631afe400203b198d8"),
+        "name" : "tareq",
+        "home_state" : "ramallah",
+        "lucky_number" : 15,
+        "birthday" : {
+                "month" : 8,
+                "day" : 15,
+                "year" : 1999
+        }
+}
+{
+        "_id" : ObjectId("602115f51afe400203b198db"),
+        "name" : "maher",
+        "home_state" : "ramallah",
+        "lucky_number" : 20,
+        "birthday" : {
+                "month" : 1,
+                "day" : 1,
+                "year" : 2000
+        }
+}
+> db.students.find({home_state:"nablus"},{ home_state:"ramallah"}).pretty()
+{ "_id" : ObjectId("60210d6c1afe400203b198d6"), "home_state" : "ramallah" }
+{ "_id" : ObjectId("602114ea1afe400203b198d7"), "home_state" : "ramallah" }
+{ "_id" : ObjectId("602115b21afe400203b198da"), "home_state" : "ramallah" }
+> db.students.find({home_state:"nablus"},{ home_state:"ramallah"})
+{ "_id" : ObjectId("60210d6c1afe400203b198d6"), "home_state" : "ramallah" }
+{ "_id" : ObjectId("602114ea1afe400203b198d7"), "home_state" : "ramallah" }
+{ "_id" : ObjectId("602115b21afe400203b198da"), "home_state" : "ramallah" }
+> db.students.find({home_state:"nablus", home_state:"ramallah"})
+{ "_id" : ObjectId("602115631afe400203b198d8"), "name" : "tareq", "home_state" : "ramallah", "lucky_number" : 15, "birthday" : { "month" : 8, "day" : 15, "year" : 1999 } }
+{ "_id" : ObjectId("602115f51afe400203b198db"), "name" : "maher", "home_state" : "ramallah", "lucky_number" : 20, "birthday" : { "month" : 1, "day" : 1, "year" : 2000 } }
+> db.students.find({home_state:"nablus"})
+{ "_id" : ObjectId("60210d6c1afe400203b198d6"), "name" : "loay", "home_state" : "nablus", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 15, "year" : 1997 } }
+{ "_id" : ObjectId("602114ea1afe400203b198d7"), "name" : "loay", "home_state" : "nablus", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 15, "year" : 1997 } }
+{ "_id" : ObjectId("602115b21afe400203b198da"), "name" : "lion", "home_state" : "nablus", "lucky_number" : 23, "birthday" : { "month" : 9, "day" : 6, "year" : 1998 } }
+> db.students.find({lucky_number:{$lte:10}}).pretty()
+{
+        "_id" : ObjectId("60210d6c1afe400203b198d6"),
+        "name" : "loay",
+        "home_state" : "nablus",
+        "lucky_number" : 7,
+        "birthday" : {
+                "month" : 8,
+                "day" : 15,
+                "year" : 1997
+        }
+}
+{
+        "_id" : ObjectId("602114ea1afe400203b198d7"),
+        "name" : "loay",
+        "home_state" : "nablus",
+        "lucky_number" : 7,
+        "birthday" : {
+                "month" : 8,
+                "day" : 15,
+                "year" : 1997
+        }
+}
+> db.students.find({lucky_number:{$lte:15}}).pretty()
+{
+        "_id" : ObjectId("60210d6c1afe400203b198d6"),
+        "name" : "loay",
+        "home_state" : "nablus",
+        "lucky_number" : 7,
+        "birthday" : {
+                "month" : 8,
+                "day" : 15,
+                "year" : 1997
+        }
+}
+{
+        "_id" : ObjectId("602114ea1afe400203b198d7"),
+        "name" : "loay",
+        "home_state" : "nablus",
+        "lucky_number" : 7,
+        "birthday" : {
+                "month" : 8,
+                "day" : 15,
+                "year" : 1997
+        }
+}
+{
+        "_id" : ObjectId("602115631afe400203b198d8"),
+        "name" : "tareq",
+        "home_state" : "ramallah",
+        "lucky_number" : 15,
+        "birthday" : {
+                "month" : 8,
+                "day" : 15,
+                "year" : 1999
+        }
+}
+> db.students.find({lucky_number:{$gt:3}}).pretty()
+{
+        "_id" : ObjectId("60210d6c1afe400203b198d6"),
+        "name" : "loay",
+        "home_state" : "nablus",
+        "lucky_number" : 7,
+        "birthday" : {
+                "month" : 8,
+                "day" : 15,
+                "year" : 1997
+        }
+}
+{
+        "_id" : ObjectId("602114ea1afe400203b198d7"),
+        "name" : "loay",
+        "home_state" : "nablus",
+        "lucky_number" : 7,
+        "birthday" : {
+                "month" : 8,
+                "day" : 15,
+                "year" : 1997
+        }
+}
+{
+        "_id" : ObjectId("602115631afe400203b198d8"),
+        "name" : "tareq",
+        "home_state" : "ramallah",
+        "lucky_number" : 15,
+        "birthday" : {
+                "month" : 8,
+                "day" : 15,
+                "year" : 1999
+        }
+}
+{
+        "_id" : ObjectId("602115901afe400203b198d9"),
+        "name" : "abed",
+        "home_state" : "jenin",
+        "lucky_number" : 30,
+        "birthday" : {
+                "month" : 9,
+                "day" : 1,
+                "year" : 1990
+        }
+}
+{
+        "_id" : ObjectId("602115b21afe400203b198da"),
+        "name" : "lion",
+        "home_state" : "nablus",
+        "lucky_number" : 23,
+        "birthday" : {
+                "month" : 9,
+                "day" : 6,
+                "year" : 1998
+        }
+}
+{
+        "_id" : ObjectId("602115f51afe400203b198db"),
+        "name" : "maher",
+        "home_state" : "ramallah",
+        "lucky_number" : 20,
+        "birthday" : {
+                "month" : 1,
+                "day" : 1,
+                "year" : 2000
+        }
+}
+> db.students.find({lucky_number:{$in:[10,20]}}).pretty()
+{
+        "_id" : ObjectId("602115f51afe400203b198db"),
+        "name" : "maher",
+        "home_state" : "ramallah",
+        "lucky_number" : 20,
+        "birthday" : {
+                "month" : 1,
+                "day" : 1,
+                "year" : 2000
+        }
+}
+> db.students.find({lucky_number:{$in:[15,20]}}).pretty()
+{
+        "_id" : ObjectId("602115631afe400203b198d8"),
+        "name" : "tareq",
+        "home_state" : "ramallah",
+        "lucky_number" : 15,
+        "birthday" : {
+                "month" : 8,
+                "day" : 15,
+                "year" : 1999
+        }
+}
+{
+        "_id" : ObjectId("602115f51afe400203b198db"),
+        "name" : "maher",
+        "home_state" : "ramallah",
+        "lucky_number" : 20,
+        "birthday" : {
+                "month" : 1,
+                "day" : 1,
+                "year" : 2000
+        }
+}
+> db.students.find({$or:[{home_state:"nablus"},{home_state:"ramallah"]}).pretty()
+...
+...
+> s
+uncaught exception: ReferenceError: s is not defined :
+@(shell):1:1
+> db.students.find({$or:[{home_state:"nablus"},{home_state:"ramallah"}]}).pretty()
+{
+        "_id" : ObjectId("60210d6c1afe400203b198d6"),
+        "name" : "loay",
+        "home_state" : "nablus",
+        "lucky_number" : 7,
+        "birthday" : {
+                "month" : 8,
+                "day" : 15,
+                "year" : 1997
+        }
+}
+{
+        "_id" : ObjectId("602114ea1afe400203b198d7"),
+        "name" : "loay",
+        "home_state" : "nablus",
+        "lucky_number" : 7,
+        "birthday" : {
+                "month" : 8,
+                "day" : 15,
+                "year" : 1997
+        }
+}
+{
+        "_id" : ObjectId("602115631afe400203b198d8"),
+        "name" : "tareq",
+        "home_state" : "ramallah",
+        "lucky_number" : 15,
+        "birthday" : {
+                "month" : 8,
+                "day" : 15,
+                "year" : 1999
+        }
+}
+{
+        "_id" : ObjectId("602115b21afe400203b198da"),
+        "name" : "lion",
+        "home_state" : "nablus",
+        "lucky_number" : 23,
+        "birthday" : {
+                "month" : 9,
+                "day" : 6,
+                "year" : 1998
+        }
+}
+{
+        "_id" : ObjectId("602115f51afe400203b198db"),
+        "name" : "maher",
+        "home_state" : "ramallah",
+        "lucky_number" : 20,
+        "birthday" : {
+                "month" : 1,
+                "day" : 1,
+                "year" : 2000
+        }
+}
+> ^C
+bye
+
+c:\Program Files\MongoDB\Server\4.4\bin>mongo.exe
+MongoDB shell version v4.4.3
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("4235a2b0-63b8-4475-994a-698efef85ac3") }
+MongoDB server version: 4.4.3
+---
+The server generated these startup warnings when booting:
+        2021-02-06T20:34:36.622+02:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> db
+test
+> show dbs
+admin        0.000GB
+config       0.000GB
+local        0.000GB
+my_first_db  0.000GB
+test         0.000GB
+> db my_first_db
+uncaught exception: SyntaxError: unexpected token: identifier :
+@(shell):1:3
+> use my_first_db
+switched to db my_first_db
+> show collectios
+uncaught exception: Error: don't know how to show [collectios] :
+shellHelper.show@src/mongo/shell/utils.js:1191:11
+shellHelper@src/mongo/shell/utils.js:819:15
+@(shellhelp2):1:1
+> show collections
+students
+> db.students.find({lucky_number:{$gt:0,$lt:10}})
+{ "_id" : ObjectId("60210d6c1afe400203b198d6"), "name" : "loay", "home_state" : "nablus", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 15, "year" : 1997 } }
+{ "_id" : ObjectId("602114ea1afe400203b198d7"), "name" : "loay", "home_state" : "nablus", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 15, "year" : 1997 } }
+> db.students.find({lucky_number:{$gt:10,$lt:20}})
+{ "_id" : ObjectId("602115631afe400203b198d8"), "name" : "tareq", "home_state" : "ramallah", "lucky_number" : 15, "birthday" : { "month" : 8, "day" : 15, "year" : 1999 } }
+> db.students.update({},{$set:{inerests :{"coding","brunch","MongoDB"}}},{upser:false,multi:true})
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:48
+> db.students.update({},{$set:{inerests :{"coding","brunch","MongoDB"}}},{upser:false,multi:true})
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:48
+> db.students.show()
+uncaught exception: TypeError: db.students.show is not a function :
+@(shell):1:1
+> db.students.find()
+{ "_id" : ObjectId("60210d6c1afe400203b198d6"), "name" : "loay", "home_state" : "nablus", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 15, "year" : 1997 } }
+{ "_id" : ObjectId("602114ea1afe400203b198d7"), "name" : "loay", "home_state" : "nablus", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 15, "year" : 1997 } }
+{ "_id" : ObjectId("602115631afe400203b198d8"), "name" : "tareq", "home_state" : "ramallah", "lucky_number" : 15, "birthday" : { "month" : 8, "day" : 15, "year" : 1999 } }
+{ "_id" : ObjectId("602115901afe400203b198d9"), "name" : "abed", "home_state" : "jenin", "lucky_number" : 30, "birthday" : { "month" : 9, "day" : 1, "year" : 1990 } }
+{ "_id" : ObjectId("602115b21afe400203b198da"), "name" : "lion", "home_state" : "nablus", "lucky_number" : 23, "birthday" : { "month" : 9, "day" : 6, "year" : 1998 } }
+{ "_id" : ObjectId("602115f51afe400203b198db"), "name" : "maher", "home_state" : "ramallah", "lucky_number" : 20, "birthday" : { "month" : 1, "day" : 1, "year" : 2000 } }
+> db.students.update({},{$set:{inerests :["coding","brunch","MongoDB"]}},{upser:false,multi:true})
+WriteResult({ "nMatched" : 6, "nUpserted" : 0, "nModified" : 6 })
+> db.students.find()
+{ "_id" : ObjectId("60210d6c1afe400203b198d6"), "name" : "loay", "home_state" : "nablus", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 15, "year" : 1997 }, "inerests" : [ "coding", "brunch", "MongoDB" ] }
+{ "_id" : ObjectId("602114ea1afe400203b198d7"), "name" : "loay", "home_state" : "nablus", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 15, "year" : 1997 }, "inerests" : [ "coding", "brunch", "MongoDB" ] }
+{ "_id" : ObjectId("602115631afe400203b198d8"), "name" : "tareq", "home_state" : "ramallah", "lucky_number" : 15, "birthday" : { "month" : 8, "day" : 15, "year" : 1999 }, "inerests" : [ "coding", "brunch", "MongoDB" ] }
+{ "_id" : ObjectId("602115901afe400203b198d9"), "name" : "abed", "home_state" : "jenin", "lucky_number" : 30, "birthday" : { "month" : 9, "day" : 1, "year" : 1990 }, "inerests" : [ "coding", "brunch", "MongoDB" ] }
+{ "_id" : ObjectId("602115b21afe400203b198da"), "name" : "lion", "home_state" : "nablus", "lucky_number" : 23, "birthday" : { "month" : 9, "day" : 6, "year" : 1998 }, "inerests" : [ "coding", "brunch", "MongoDB" ] }
+{ "_id" : ObjectId("602115f51afe400203b198db"), "name" : "maher", "home_state" : "ramallah", "lucky_number" : 20, "birthday" : { "month" : 1, "day" : 1, "year" : 2000 }, "inerests" : [ "coding", "brunch", "MongoDB" ] }
+> db.students.update({_id:ObjectId("60210d6c1afe400203b198d6")},{$addToSet:{inerests:"java"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.find({_id:ObjectId("60210d6c1afe400203b198d6"})
+... )
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:57
+> db.students.find({_id:ObjectId("60210d6c1afe400203b198d6")})
+{ "_id" : ObjectId("60210d6c1afe400203b198d6"), "name" : "loay", "home_state" : "nablus", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 15, "year" : 1997 }, "inerests" : [ "coding", "brunch", "MongoDB", "java" ] }
+> db.students.find()
+{ "_id" : ObjectId("60210d6c1afe400203b198d6"), "name" : "loay", "home_state" : "nablus", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 15, "year" : 1997 }, "inerests" : [ "coding", "brunch", "MongoDB", "java" ] }
+{ "_id" : ObjectId("602114ea1afe400203b198d7"), "name" : "loay", "home_state" : "nablus", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 15, "year" : 1997 }, "inerests" : [ "coding", "brunch", "MongoDB" ] }
+{ "_id" : ObjectId("602115631afe400203b198d8"), "name" : "tareq", "home_state" : "ramallah", "lucky_number" : 15, "birthday" : { "month" : 8, "day" : 15, "year" : 1999 }, "inerests" : [ "coding", "brunch", "MongoDB" ] }
+{ "_id" : ObjectId("602115901afe400203b198d9"), "name" : "abed", "home_state" : "jenin", "lucky_number" : 30, "birthday" : { "month" : 9, "day" : 1, "year" : 1990 }, "inerests" : [ "coding", "brunch", "MongoDB" ] }
+{ "_id" : ObjectId("602115b21afe400203b198da"), "name" : "lion", "home_state" : "nablus", "lucky_number" : 23, "birthday" : { "month" : 9, "day" : 6, "year" : 1998 }, "inerests" : [ "coding", "brunch", "MongoDB" ] }
+{ "_id" : ObjectId("602115f51afe400203b198db"), "name" : "maher", "home_state" : "ramallah", "lucky_number" : 20, "birthday" : { "month" : 1, "day" : 1, "year" : 2000 }, "inerests" : [ "coding", "brunch", "MongoDB" ] }
+> db.students.update({_id:ObjectId("60210d6c1afe400203b198d6")},{$pull:{inerests:"java"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.find({_id:ObjectId("60210d6c1afe400203b198d6")})
+{ "_id" : ObjectId("60210d6c1afe400203b198d6"), "name" : "loay", "home_state" : "nablus", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 15, "year" : 1997 }, "inerests" : [ "coding", "brunch", "MongoDB" ] }
+> db.students.remove({home_state:"nablus"})
+WriteResult({ "nRemoved" : 3 })
+> db.students.update({},{$set:{number_of_belts :0}},{upser:false,multi:true})
+WriteResult({ "nMatched" : 3, "nUpserted" : 0, "nModified" : 3 })
+> db.students.find()
+{ "_id" : ObjectId("602115631afe400203b198d8"), "name" : "tareq", "home_state" : "ramallah", "lucky_number" : 15, "birthday" : { "month" : 8, "day" : 15, "year" : 1999 }, "inerests" : [ "coding", "brunch", "MongoDB" ], "number_of_belts" : 0 }
+{ "_id" : ObjectId("602115901afe400203b198d9"), "name" : "abed", "home_state" : "jenin", "lucky_number" : 30, "birthday" : { "month" : 9, "day" : 1, "year" : 1990 }, "inerests" : [ "coding", "brunch", "MongoDB" ], "number_of_belts" : 0 }
+{ "_id" : ObjectId("602115f51afe400203b198db"), "name" : "maher", "home_state" : "ramallah", "lucky_number" : 20, "birthday" : { "month" : 1, "day" : 1, "year" : 2000 }, "inerests" : [ "coding", "brunch", "MongoDB" ], "number_of_belts" : 0 }
+> db.students.update({home_state:"jenin"},{$inc:{number_of_belts:1}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.find()
+{ "_id" : ObjectId("602115631afe400203b198d8"), "name" : "tareq", "home_state" : "ramallah", "lucky_number" : 15, "birthday" : { "month" : 8, "day" : 15, "year" : 1999 }, "inerests" : [ "coding", "brunch", "MongoDB" ], "number_of_belts" : 0 }
+{ "_id" : ObjectId("602115901afe400203b198d9"), "name" : "abed", "home_state" : "jenin", "lucky_number" : 30, "birthday" : { "month" : 9, "day" : 1, "year" : 1990 }, "inerests" : [ "coding", "brunch", "MongoDB" ], "number_of_belts" : 1 }
+{ "_id" : ObjectId("602115f51afe400203b198db"), "name" : "maher", "home_state" : "ramallah", "lucky_number" : 20, "birthday" : { "month" : 1, "day" : 1, "year" : 2000 }, "inerests" : [ "coding", "brunch", "MongoDB" ], "number_of_belts" : 0 }
+> db.students.update({home_state:"jenin"},{$inc:{number_of_belts:5}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.find()
+{ "_id" : ObjectId("602115631afe400203b198d8"), "name" : "tareq", "home_state" : "ramallah", "lucky_number" : 15, "birthday" : { "month" : 8, "day" : 15, "year" : 1999 }, "inerests" : [ "coding", "brunch", "MongoDB" ], "number_of_belts" : 0 }
+{ "_id" : ObjectId("602115901afe400203b198d9"), "name" : "abed", "home_state" : "jenin", "lucky_number" : 30, "birthday" : { "month" : 9, "day" : 1, "year" : 1990 }, "inerests" : [ "coding", "brunch", "MongoDB" ], "number_of_belts" : 6 }
+{ "_id" : ObjectId("602115f51afe400203b198db"), "name" : "maher", "home_state" : "ramallah", "lucky_number" : 20, "birthday" : { "month" : 1, "day" : 1, "year" : 2000 }, "inerests" : [ "coding", "brunch", "MongoDB" ], "number_of_belts" : 0 }
+> db.students.update({},{$rename:{number_of_belts:belts_earned}},false,true)
+uncaught exception: ReferenceError: belts_earned is not defined :
+@(shell):1:33
+> db.students.update({},{$rename:{number_of_belts:"belts_earned"}},false,true)
+WriteResult({ "nMatched" : 3, "nUpserted" : 0, "nModified" : 3 })
+> db.students.find()
+{ "_id" : ObjectId("602115631afe400203b198d8"), "name" : "tareq", "home_state" : "ramallah", "lucky_number" : 15, "birthday" : { "month" : 8, "day" : 15, "year" : 1999 }, "inerests" : [ "coding", "brunch", "MongoDB" ], "belts_earned" : 0 }
+{ "_id" : ObjectId("602115901afe400203b198d9"), "name" : "abed", "home_state" : "jenin", "lucky_number" : 30, "birthday" : { "month" : 9, "day" : 1, "year" : 1990 }, "inerests" : [ "coding", "brunch", "MongoDB" ], "belts_earned" : 6 }
+{ "_id" : ObjectId("602115f51afe400203b198db"), "name" : "maher", "home_state" : "ramallah", "lucky_number" : 20, "birthday" : { "month" : 1, "day" : 1, "year" : 2000 }, "inerests" : [ "coding", "brunch", "MongoDB" ], "belts_earned" : 0 }
+> db.students.remove({},{lucky_number})
+uncaught exception: ReferenceError: lucky_number is not defined :
+@(shell):1:24
+> db.students.remove({},{lucky_number},{multi:true})
+uncaught exception: ReferenceError: lucky_number is not defined :
+@(shell):1:24
+> db.students.update({},{$unset:{lucky_number}},{multi:true})
+uncaught exception: ReferenceError: lucky_number is not defined :
+@(shell):1:32
+> db.students.update({},{$unset:{lucky_number:""}},{multi:true})
+WriteResult({ "nMatched" : 3, "nUpserted" : 0, "nModified" : 3 })
+> db.students.find()
+{ "_id" : ObjectId("602115631afe400203b198d8"), "name" : "tareq", "home_state" : "ramallah", "birthday" : { "month" : 8, "day" : 15, "year" : 1999 }, "inerests" : [ "coding", "brunch", "MongoDB" ], "belts_earned" : 0 }
+{ "_id" : ObjectId("602115901afe400203b198d9"), "name" : "abed", "home_state" : "jenin", "birthday" : { "month" : 9, "day" : 1, "year" : 1990 }, "inerests" : [ "coding", "brunch", "MongoDB" ], "belts_earned" : 6 }
+{ "_id" : ObjectId("602115f51afe400203b198db"), "name" : "maher", "home_state" : "ramallah", "birthday" : { "month" : 1, "day" : 1, "year" : 2000 }, "inerests" : [ "coding", "brunch", "MongoDB" ], "belts_earned" : 0 }
+> db.students.update({},{$currentDate:{update_on:true}},{multi:true})
+WriteResult({ "nMatched" : 3, "nUpserted" : 0, "nModified" : 3 })
+> db.students.find()
+{ "_id" : ObjectId("602115631afe400203b198d8"), "name" : "tareq", "home_state" : "ramallah", "birthday" : { "month" : 8, "day" : 15, "year" : 1999 }, "inerests" : [ "coding", "brunch", "MongoDB" ], "belts_earned" : 0, "update_on" : ISODate("2021-02-08T14:47:39.672Z") }
+{ "_id" : ObjectId("602115901afe400203b198d9"), "name" : "abed", "home_state" : "jenin", "birthday" : { "month" : 9, "day" : 1, "year" : 1990 }, "inerests" : [ "coding", "brunch", "MongoDB" ], "belts_earned" : 6, "update_on" : ISODate("2021-02-08T14:47:39.672Z") }
+{ "_id" : ObjectId("602115f51afe400203b198db"), "name" : "maher", "home_state" : "ramallah", "birthday" : { "month" : 1, "day" : 1, "year" : 2000 }, "inerests" : [ "coding", "brunch", "MongoDB" ], "belts_earned" : 0, "update_on" : ISODate("2021-02-08T14:47:39.672Z") }
+>
