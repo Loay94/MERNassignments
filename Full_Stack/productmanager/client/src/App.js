@@ -6,7 +6,7 @@ import Update from './views/Update';
 function App() {
   return (
     <div className="App">
-     <Router>
+      <Router>
         <Main path="addproduct/"/>
         <Detail path="product/:id" />
         <Update path="product/:id/edit"/>
