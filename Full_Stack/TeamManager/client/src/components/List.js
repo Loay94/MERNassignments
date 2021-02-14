@@ -27,8 +27,6 @@ const List = (props) => {
                 removeFromDom(item._id)
                 console.log(item._id);
             })}
-    
-
     return (
         <div >
             <ManagePlayers />
