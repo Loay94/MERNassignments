@@ -26,12 +26,24 @@ const UserSchema = new mongoose.Schema({
     country: {
         type: String,
         required: [true, "Last name is required"]
-      }
+      },
+    books : [{ type: mongoose.Schema.Types.ObjectId, ref: 'Book' }]
   }, {timestamps: true});
 
-const User = mongoose.model("User", UserSchema);
+  const BookSchema = new mongoose.Schema({
 
-module.exports = User;
+    name: {
+        type: String,
+        required: [true, "Name of the Book is required"]
+      },
+
+      fans: [{ type: Number, ref: 'User' }]
+  })
+
+const User = mongoose.model("User", UserSchema);
+const Book = mongoose.model("Book", BookSchema);
+
+module.exports = {User , Book};
 
 UserSchema.pre('save', function(next) {
     bcrypt.hash(this.password, 10)
