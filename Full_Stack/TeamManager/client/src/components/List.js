@@ -19,8 +19,6 @@ const List = (props) => {
         setPlayer(player.filter(person => person._id != id));
     }
     const deletePlayer = (item) => {
-        
-       
         alert("Are you sure ,you want to remove "+item.name+"???")
         axios.delete("http://localhost:8000/api/delete/"+item._id)
             .then(res => {
