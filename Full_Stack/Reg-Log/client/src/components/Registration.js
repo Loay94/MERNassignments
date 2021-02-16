@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import axios from 'axios';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 
 const Registration = () => {
     const[firstName,setFirstName]=useState("");
@@ -18,7 +18,7 @@ const Registration = () => {
             password,
             country
         })
-            .then(res=>console.log(res))
+            .then(res=>console.log(res),navigate('home/'))
             .catch(err=>console.log(err))
     }
 

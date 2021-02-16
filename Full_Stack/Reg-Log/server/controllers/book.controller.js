@@ -30,10 +30,13 @@ module.exports.login= async(req, res) => {
     // const correctPassword = await bcrypt.compare(req.body.password, user.password);
     // return res.json(correctPassword);
 
-    if(req.body.password != user.password) {
+    const correctPassword = await bcrypt.compare(req.body.password, user.password);
+ 
+    if(!correctPassword) {
         // password wasn't a match!
-        return res.json("loay");
+        return res.sendStatus(400);
     }
+    
     // if we made it this far, the password was correct
     const userToken = jwt.sign({
         id: user._id
